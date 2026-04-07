@@ -16,7 +16,7 @@ abstract class Student {
     }
 
     public void check() {
-        System.out.printf("%s | %s | saldo: %d", this.nama, this.tipe, this.saldo);
+        System.out.printf("%s | %s | saldo: %.2f%n", this.nama, this.tipe, this.saldo);
     }
 
     public void onCreateSuccess() {
@@ -24,7 +24,7 @@ abstract class Student {
     }
 
     public void onTransactionSuccess() {
-        System.out.printf("Saldo %s: %d", this.nama, this.saldo);
+        System.out.printf("Saldo %s: %.2f%n", this.nama, this.saldo);
     }
 
     public abstract boolean take(int jumlah);
