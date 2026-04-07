@@ -16,15 +16,15 @@ abstract class Student {
     }
 
     public void check() {
-        System.out.printf("%s | %s | saldo: %.2f%n", this.nama, this.tipe, this.saldo);
+        System.out.printf("%s | %s | saldo: %.0f%n", this.nama, this.tipe, this.saldo);
     }
 
     public void onCreateSuccess() {
-        System.out.printf("%s %s berhasil dibuat", this.tipe, this.nama);
+        System.out.printf("%s %s berhasil dibuat\n", this.tipe, this.nama);
     }
 
     public void onTransactionSuccess() {
-        System.out.printf("Saldo %s: %.2f%n", this.nama, this.saldo);
+        System.out.printf("Saldo %s: %.0f%n", this.nama, this.saldo);
     }
 
     public abstract boolean take(int jumlah);
@@ -44,7 +44,7 @@ class Reguler extends Student {
             onTransactionSuccess();
             return true;
         } else {
-            System.out.printf("Saldo %s tidak cukup", this.nama);
+            System.out.printf("Saldo %s tidak cukup\n", this.nama);
             return false;
         }
     }
@@ -54,6 +54,7 @@ class Beasiswa extends Student {
     public Beasiswa(String nama) {
         super(nama);
         this.tipe = "Beasiswa";
+        onCreateSuccess();
     }
     
     @Override
@@ -65,7 +66,7 @@ class Beasiswa extends Student {
             onTransactionSuccess();
             return true;
         } else {
-            System.out.printf("Saldo %s tidak cukup", this.nama);
+            System.out.printf("Saldo %s tidak cukup\n", this.nama);
             return false;
         }
     }
@@ -101,7 +102,6 @@ public class Tabungan {
                     } else if (tipe.equals("BEASISWA")) {
                         listSiswa.add(new Beasiswa(nama));
                     }
-                    System.out.printf("%s %s berhasil dibuat", tipe, nama);
                 }
             } else if (perintah.equals("SAVE")) {
                 String nama = input.next();
@@ -135,11 +135,7 @@ public class Tabungan {
                 if (target == null) {
                     System.out.println("Akun tidak ditemukan");
                 } else {
-                    if (target.take(jumlah)) {
-                        System.out.println("Saldo " + nama + ": " + target.saldo);
-                    } else {
-                        System.out.println("Saldo " + nama + " tidak cukup");
-                    }
+                    target.take(jumlah);
                 }
             } else if (perintah.equals("CHECK")) {
                 String nama = input.next();
