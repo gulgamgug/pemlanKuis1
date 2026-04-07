@@ -79,7 +79,7 @@ public class Tabungan {
         int n = input.nextInt();
         ArrayList<Student> listSiswa = new ArrayList<>();
 
-        for (int i=0; i<n, i++) {
+        for (int i=0; i<n; i++) {
             String perintah = input.next();
             if (perintah.equals("CREATE")) {
                 String tipe = input.next();
